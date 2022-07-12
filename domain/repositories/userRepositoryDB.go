@@ -5,14 +5,15 @@ import (
 	"log"
 
 	"github.com/jackc/pgx/v4"
+	domain "github.com/kiran-marke/ecommercechatbot/domain/models"
 )
 
 type UserRepositoryDB struct {
 	client *pgx.Conn
-	user   User
+	user   domain.User
 }
 
-func (u UserRepositoryDB) GetUserDetails() (User, error) {
+func (u UserRepositoryDB) GetUserDetails() (domain.User, error) {
 
 	// var tenant_id int
 	// var tenant_name string
@@ -22,7 +23,7 @@ func (u UserRepositoryDB) GetUserDetails() (User, error) {
 	// 	log.Fatalf("QueryRow failed: %v\n", err)
 	// }
 
-	user := User{
+	user := domain.User{
 		TenantId: 1,
 		UserName: "amazonuser",
 	}

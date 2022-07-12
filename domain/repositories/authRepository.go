@@ -6,18 +6,15 @@ import (
 	"log"
 
 	"github.com/jackc/pgx/v4"
+	domain "github.com/kiran-marke/ecommercechatbot/domain/models"
 )
-
-type AuthRepository interface {
-	FindBy(username string, password string) (*Login, error)
-}
 
 type AuthRepositoryDb struct {
 	client *pgx.Conn
 }
 
-func (d AuthRepositoryDb) FindBy(username, password string) (*Login, error) {
-	var login Login
+func (d AuthRepositoryDb) FindBy(username, password string) (*domain.Login, error) {
+	var login domain.Login
 	var user_name string
 	var tenant_id int
 	var tenant_name string
@@ -31,7 +28,7 @@ func (d AuthRepositoryDb) FindBy(username, password string) (*Login, error) {
 		return nil, fmt.Errorf("invalid credentials")
 	}
 
-	login = Login{
+	login = domain.Login{
 		TenantId:   tenant_id,
 		Username:   user_name,
 		TenantName: tenant_name,

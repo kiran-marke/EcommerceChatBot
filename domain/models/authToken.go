@@ -12,6 +12,10 @@ type AuthToken struct {
 	token *jwt.Token
 }
 
+type AuthRepository interface {
+	FindBy(username string, password string) (*Login, error)
+}
+
 func (t AuthToken) NewAccessToken() (string, error) {
 	signedString, err := t.token.SignedString([]byte(HMAC_SAMPLE_SECRET))
 	if err != nil {

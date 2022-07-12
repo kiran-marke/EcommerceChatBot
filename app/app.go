@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/kiran-marke/ecommercechatbot/domain"
+	domain "github.com/kiran-marke/ecommercechatbot/domain/repositories"
 	"github.com/kiran-marke/ecommercechatbot/service"
 	"github.com/rs/cors"
 )

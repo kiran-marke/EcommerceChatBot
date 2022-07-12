@@ -5,13 +5,14 @@ import (
 	"log"
 
 	"github.com/jackc/pgx/v4"
+	domain "github.com/kiran-marke/ecommercechatbot/domain/models"
 )
 
 type TenantRepositoryDB struct {
 	client *pgx.Conn
 }
 
-func (t TenantRepositoryDB) GetTenantDetails(tenantId int) (Tenant, error) {
+func (t TenantRepositoryDB) GetTenantDetails(tenantId int) (domain.Tenant, error) {
 
 	var tenantName string
 	var tenantDetails string
@@ -20,7 +21,7 @@ func (t TenantRepositoryDB) GetTenantDetails(tenantId int) (Tenant, error) {
 		log.Fatalf("QueryRow failed: %v\n", err)
 	}
 
-	tenantStruct := Tenant{
+	tenantStruct := domain.Tenant{
 		TenantId:   tenantId,
 		TenantName: tenantName,
 		AboutUs:    tenantDetails,

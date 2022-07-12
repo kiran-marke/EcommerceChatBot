@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/dgrijalva/jwt-go"
-	"github.com/kiran-marke/ecommercechatbot/domain"
+	domain "github.com/kiran-marke/ecommercechatbot/domain/models"
 )
 
 type Service interface {

@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/kiran-marke/ecommercechatbot/domain"
+	domain "github.com/kiran-marke/ecommercechatbot/domain/models"
 	"github.com/kiran-marke/ecommercechatbot/service"
 )
 
