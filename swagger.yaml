@@ -1,0 +1,145 @@
+swagger: '2.0'
+info:
+  title: ECommerceChatBot API
+  description: ECommerceChatBot API Specification
+  version: 1.1.0
+schemes:
+  - http
+host: localhost:8000
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /greeting:
+    get:
+      summary: Initial greeting for the user
+      description: Get the initial greeting when user logs into the chat application
+      parameters:
+        - $ref: '#/parameters/Authorization'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/greetingresponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Error'
+  /performtask:
+    post:
+      summary: Command to the bot to respond
+      description: Bot responds to the predefined commands
+      parameters:
+        - $ref: '#/parameters/Authorization'
+        - $ref: '#/parameters/TaskName'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/performtaskresponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Error'
+  /auth/login:
+    post:
+      summary: Login to Chat application
+      description: Accepts username and password and responds with jwt token containing tenant and user details
+      parameters:
+        - $ref: '#/parameters/username'
+        - $ref: '#/parameters/password'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/loginresponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Error'
+  /auth/verify:
+    post:
+      summary: Verify the given authorization token
+      description: Returns claims if authorization token is valid
+      parameters:
+        - $ref: '#/parameters/Authorization'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/verifyresponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Error:
+    type: object
+    properties:
+      error:
+        type: string
+  performtaskresponse:
+    type: object
+  greetingresponse:
+    type: object
+    properties:
+      greetingmessage:
+        type: string
+  loginresponse:
+    type: object
+    properties:
+      access_token:
+        type: string
+  verifyresponse:
+    type: object
+    properties:
+      tenant_id:
+        type: integer
+      tenant_name:
+        type: string
+      username:
+        type: string
+      exp:
+        type: integer
+parameters:
+  Authorization:
+    name: Authorization
+    in: header
+    required: true
+    description: Jwt auth Token
+    type: string
+  TaskName:
+    name: TaskName
+    in: header
+    required: true
+    description: Predefined taskname to do
+    type: string
+  username:
+    name: username
+    in: header
+    required: true
+    description: Login username 
+    type: string
+  password:
+    name: password
+    in: header
+    required: true
+    description: Login password
+    type: string
