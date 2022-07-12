@@ -16,7 +16,7 @@ func Start() {
 	//wiring
 	h := Handler{
 		service: service.NewService(
-			domain.NewOrderRepositoryStub(),
+			domain.NewOrderRepositoryDB(),
 			domain.NewUserRepositoryDB(),
 			domain.NewTenantRepositoryDB(),
 			domain.NewAuthRepository()),

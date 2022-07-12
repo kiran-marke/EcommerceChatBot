@@ -15,14 +15,6 @@ type UserRepositoryDB struct {
 
 func (u UserRepositoryDB) GetUserDetails() (domain.User, error) {
 
-	// var tenant_id int
-	// var tenant_name string
-	// var tenant_details string
-	// err := t.client.QueryRow(context.Background(), "select tenant_id, tenant_name, tenant_details from user where tenant_id=$1", 1).Scan(&tenant_id, &tenant_name, &tenant_details)
-	// if err != nil {
-	// 	log.Fatalf("QueryRow failed: %v\n", err)
-	// }
-
 	user := domain.User{
 		TenantId: 1,
 		UserName: "amazonuser",

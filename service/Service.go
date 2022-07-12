@@ -74,7 +74,6 @@ func jwtTokenFromString(tokenString string) (*jwt.Token, *domain.AccessTokenClai
 		return []byte(domain.HMAC_SAMPLE_SECRET), nil
 	})
 
-	fmt.Printf("verified token %v", token)
 	if err != nil {
 		log.Println("Error while parsing token: " + err.Error())
 		return nil, nil, err
